@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: migrate-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: migrate
+  template:
+    metadata:
+      labels:
+        app: migrate
+    spec:
+      containers:
+        - name: migrate
+          image: migrateimage
+          imagePullPolicy: IfNotPresent
+            # env:
+            #- name: DBConnection__Host
+            #value: postgres
+            #- name: DBConnection__Port
+            #value: "5432"
+            #- name: DBConnection__User
+            # value: postgres
+            #- name: DBConnection__Password
+            #value: "1234"
+            #- name: DBConnection__Database
+            # value: mohaymen
+          env:
+          - name: ConnectionStrings__DefaultConnection
+            valueFrom:
+              configMapKeyRef:
+                name: db-secrets-net
+                key: POSTGRES_CONNECTION_STRING
+
+          ports:
+          - containerPort: 8086
