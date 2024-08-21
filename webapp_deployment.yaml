@@ -33,7 +33,7 @@ spec:
 
       containers:
         - name: web
-          image: yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
+          image: tmp_dotnet3 #yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
           imagePullPolicy: IfNotPresent
             #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
 
