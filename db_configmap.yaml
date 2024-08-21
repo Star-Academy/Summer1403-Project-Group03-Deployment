@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: db-secrets-net
   labels:
-    app: postgresdb
+    app: postgres
 data:
   POSTGRES_DB: "mohaymen"
   POSTGRES_USER: "postgres"

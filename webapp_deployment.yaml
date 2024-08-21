@@ -3,42 +3,46 @@ kind: Deployment
 metadata:
   name: web-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: web
+        
   template:
     metadata:
       labels:
         app: web
+
     spec:
+      initContainers:
+        - name: init-container
+          image: yaghooli/migrateimage:latest
+          imagePullPolicy: IfNotPresent
+          env:
+          - name: ConnectionStrings__DefaultConnection
+            valueFrom:
+              configMapKeyRef:
+                name: db-secrets-net
+                key: POSTGRES_CONNECTION_STRING
+
+                  #          command: ['sh', '-c']           # Overriding the command  
+                  #args:  
+                  # - |  
+                  # DATABASE_DOMAIN=$ConnectionStrings__DefaultConnection
+                  #  echo "Database domain is $DATABASE_DOMAIN"  
+
       containers:
         - name: web
-          image: webimage
+          image: yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
           imagePullPolicy: IfNotPresent
-            #env:
-            #- name: ConnectionStrings__DefaultConnection
-            #  value: "Host=postgres;Database=mohaymen;Username=postgres;Password=1234"
+            #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
 
-          #ConnectionStrings__DefaultConnection: Host=postgres;Database=mohaymen;Username=postgres;Password=1234;
-          #env:
-          #  - name: DBConnection__Host
-          #    value: postgres
-          #  - name: DBConnection__Port
-          #    value: "5432"
-          #  - name: DBConnection__User
-          #    value: postgres
-          #  - name: DBConnection__Password
-          #    value: "1234"
-          #  - name: DBConnection__Database
-          #    value: mohaymen
-          #  - name: ASPNETCORE_URLS
-          #    value: "http://*:80"
-          env:  
-          - name: ConnectionStrings__DefaultConnection  
-            valueFrom:  
-              configMapKeyRef:  
+          env:
+          - name: ConnectionStrings__DefaultConnection
+            valueFrom:
+              configMapKeyRef:
                 name: db-secrets-net
-                key: POSTGRES_CONNECTION_STRING 
+                key: POSTGRES_CONNECTION_STRING
+
           ports:
           - containerPort: 80
