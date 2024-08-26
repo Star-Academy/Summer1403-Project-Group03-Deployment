@@ -19,6 +19,7 @@ spec:
           image: yaghooli/migrateimage:latest
  #registry.abriment.com/yaghooli/migrateabri:latest #yaghooli/migrateimage:latest
           imagePullPolicy: Always
+
             # imagePullSecrets:  
             #- name: my-registry-secret  
             #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]
@@ -47,6 +48,7 @@ spec:
       containers:
         - name: web
           image: yaghooli/dotnetdev:v0.11.8 #registry.abriment.com/yaghooli/dotnetabri2:latest #yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
+
           imagePullPolicy: IfNotPresent
             #imagePullSecrets:  
             #- name: my-registry-secret  
