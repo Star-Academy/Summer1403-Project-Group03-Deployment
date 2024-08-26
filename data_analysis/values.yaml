@@ -1,0 +1,71 @@
+postgres:  
+  db: "mohaymen"  
+  user: "postgres"  
+  password: "1234"  
+  host: "postgres"  
+  port: "5432"  
+  image:  
+    repository: postgres  
+    tag: "16"  
+  resources:  
+    limits:  
+      cpu: "1000m"  
+      memory: "2000Mi"
+      ephemeral-storage: "1000Mi"
+
+    requests:  
+      cpu: "1000m"  
+      memory: "2000Mi" 
+      ephemeral-storage: "1000Mi"
+ 
+  persistence:  
+    enabled: true  
+    size: "3Gi"  
+
+angular:  
+  image:  
+    repository: registry.abriment.com/yaghooli/angular_image_tmp2  
+  service:  
+    type: ClusterIP
+
+  resources:
+    limits:
+      cpu: "2000m"
+      memory: "4000Mi"
+      ephemeral-storage: "1000Mi"
+
+    requests:
+      cpu: "1500m"
+      memory: "3000Mi"
+      ephemeral-storage: "1000Mi"
+
+init:
+  image: 
+    repository: yaghooli/migrateimage:latest
+
+web:  
+  image:  
+    repository: yaghooli/dotnetdev:latest #registry.abriment.com/yaghooli/dotnetabri:latest  
+  service:  
+    type: ClusterIP  
+
+  resources:
+    limits:
+      cpu: "1000m"
+      memory: "2000Mi"
+      ephemeralstorage: "1000Mi"
+
+    requests:
+      cpu: "1000m"
+      memory: "2000Mi"
+      ephemeralstorage: "1000Mi"
+
+storage:  
+  size: 3Gi 
+
+      #imagePullSecrets:  
+  #  - name: my-registry-secret  
+
+    #ingress:  
+  # enabled: true  
+    #  host: myapp.local

@@ -1,0 +1,13 @@
+apiVersion: v1  
+kind: ConfigMap  
+metadata:  
+  name: db-secrets-net  
+  labels:  
+    app: postgres  
+data:  
+  POSTGRES_DB: {{ .Values.postgres.db | quote }}  
+  POSTGRES_USER: {{ .Values.postgres.user | quote }}  
+  POSTGRES_PASSWORD: {{ .Values.postgres.password | quote }}  
+  HOST: {{ .Values.postgres.host | quote }}  
+  PORT: {{ .Values.postgres.port | quote }}  
+  POSTGRES_CONNECTION_STRING: "Host={{ .Values.postgres.host }};Database={{ .Values.postgres.db }};Username={{ .Values.postgres.user }};Password={{ .Values.postgres.password }};"

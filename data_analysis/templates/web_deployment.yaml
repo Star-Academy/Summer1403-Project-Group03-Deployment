@@ -1,0 +1,55 @@
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: web  
+spec:  
+  replicas: 1  
+  selector:  
+    matchLabels:  
+      app: web  
+  template:  
+    metadata:  
+      labels:  
+        app: web  
+    spec:  
+      initContainers:  
+        - name: init-container  
+          image: {{ .Values.init.image.repository }}  
+            #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
+          resources:  
+            limits:  
+              cpu: {{ .Values.web.resources.limits.cpu }}  
+              memory: {{ .Values.web.resources.limits.memory }}
+              ephemeral-storage: {{ .Values.web.resources.limits.ephemeralstorage }}
+
+            requests:  
+              cpu: {{ .Values.web.resources.requests.cpu }}  
+              memory: {{ .Values.web.resources.requests.memory }}  
+              ephemeral-storage: {{ .Values.web.resources.requests.ephemeralstorage }}
+          env:  
+            - name: ConnectionStrings__DefaultConnection  
+              valueFrom:  
+                configMapKeyRef:  
+                  name: db-secrets-net  
+                  key: POSTGRES_CONNECTION_STRING  
+      containers:  
+        - name: web  
+          image: {{ .Values.web.image.repository }}  
+          resources:          
+            limits:
+              cpu: {{ .Values.web.resources.limits.cpu }}     
+              memory: {{ .Values.web.resources.limits.memory }}
+              ephemeral-storage: {{ .Values.web.resources.limits.ephemeralstorage }}
+
+            requests:
+              cpu: {{ .Values.web.resources.requests.cpu }}     
+              memory: {{ .Values.web.resources.requests.memory }}
+              ephemeral-storage: {{ .Values.web.resources.requests.ephemeralstorage }}
+          ports:  
+            - containerPort: 80  
+          env:  
+            - name: ConnectionStrings__DefaultConnection  
+              valueFrom:  
+                configMapKeyRef:  
+                  name: db-secrets-net  
+                  key: POSTGRES_CONNECTION_STRING  
