@@ -17,24 +17,39 @@ spec:
       initContainers:
         - name: init-container
           image: yaghooli/migrateimage:latest
+ #registry.abriment.com/yaghooli/migrateabri:latest #yaghooli/migrateimage:latest
           imagePullPolicy: IfNotPresent
+            # imagePullSecrets:  
+            #- name: my-registry-secret  
+            #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]
           env:
           - name: ConnectionStrings__DefaultConnection
             valueFrom:
               configMapKeyRef:
                 name: db-secrets-net
                 key: POSTGRES_CONNECTION_STRING
+          resources:
+            limits:
+              cpu: 1000m
+              ephemeral-storage: 500Mi
+              memory: 2000Mi
+            requests:
+              cpu: 500m
+              ephemeral-storage: 500Mi
+              memory: 1000Mi
 
-                  #          command: ['sh', '-c']           # Overriding the command  
-                  #args:  
+                  #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]           # Overriding the command  
+                    #args:  
                   # - |  
                   # DATABASE_DOMAIN=$ConnectionStrings__DefaultConnection
                   #  echo "Database domain is $DATABASE_DOMAIN"  
 
       containers:
         - name: web
-          image: tmp_dotnet3 #yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
+          image: yaghooli/dotnetdev:latest #registry.abriment.com/yaghooli/dotnetabri2:latest #yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
           imagePullPolicy: IfNotPresent
+            #imagePullSecrets:  
+            #- name: my-registry-secret  
             #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
 
           env:
@@ -43,6 +58,19 @@ spec:
               configMapKeyRef:
                 name: db-secrets-net
                 key: POSTGRES_CONNECTION_STRING
-
+                  #imagePullSecrets:
+        #- name: my-registry-secret
           ports:
           - containerPort: 80
+          resources:
+            limits:
+              cpu: 1000m
+              ephemeral-storage: 500Mi
+              memory: 2000Mi
+            requests:
+              cpu: 500m
+              ephemeral-storage: 500Mi
+              memory: 1000Mi
+
+      imagePullSecrets:
+        - name: my-registry-secret

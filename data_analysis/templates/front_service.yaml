@@ -3,9 +3,9 @@ kind: Service
 metadata:  
   name: angular-nginx-service  
 spec:  
-  type: ClusterIP #NodePort  # You can use ClusterIP or NodePort as well  
+  type: {{ .Values.angular.service.type }}   
   ports:  
     - port: 80  
       targetPort: 80  
   selector:  
-    app: angular  
+    app: angular

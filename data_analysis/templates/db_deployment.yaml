@@ -1,0 +1,45 @@
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: postgres  
+spec:  
+  replicas: 1  
+  selector:  
+    matchLabels:  
+      app: postgres  
+  template:  
+    metadata:  
+      labels:  
+        app: postgres  
+    spec:  
+      containers:  
+        - name: postgres  
+          image: {{ .Values.postgres.image.repository }}:{{ .Values.postgres.image.tag }}  
+          imagePullPolicy: IfNotPresent  
+          resources:  
+            limits:  
+              cpu: {{ .Values.postgres.resources.limits.cpu }}  
+              memory: {{ .Values.postgres.resources.limits.memory }}  
+            requests:  
+              cpu: {{ .Values.postgres.resources.requests.cpu }}  
+              memory: {{ .Values.postgres.resources.requests.memory }}  
+          ports:  
+            - containerPort: {{ .Values.postgres.port }}  
+          env:  
+            - name: POSTGRES_USER  
+              value: {{ .Values.postgres.user | quote }}  
+            - name: POSTGRES_PASSWORD  
+              value: {{ .Values.postgres.password | quote }}  
+            - name: POSTGRES_DB  
+              value: {{ .Values.postgres.db | quote }}  
+            - name: HOST  
+              value: {{ .Values.postgres.host | quote }}  
+            - name: PORT  
+              value: {{ .Values.postgres.port | quote }}  
+          volumeMounts:  
+            - mountPath: /var/lib/postgres/data  
+              name: db-data  
+      volumes:  
+        - name: db-data  
+          persistentVolumeClaim:  
+            claimName: db-persistent-pvc

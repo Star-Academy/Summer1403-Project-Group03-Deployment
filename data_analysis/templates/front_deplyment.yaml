@@ -1,0 +1,28 @@
+apiVersion: apps/v1  
+kind: Deployment  
+metadata:  
+  name: angular  
+spec:  
+  replicas: 1  
+  selector:  
+    matchLabels:  
+      app: angular  
+  template:  
+    metadata:  
+      labels:  
+        app: angular  
+    spec:  
+      containers:  
+        - name: nginx  
+          image: {{ .Values.angular.image.repository }}  
+          ports:  
+            - containerPort: 80  
+
+          resources:
+            limits:
+              cpu: {{ .Values.angular.resources.limits.cpu }}
+              memory: {{ .Values.angular.resources.limits.memory }}
+            requests:
+              cpu: {{ .Values.angular.resources.requests.cpu }}
+              memory: {{ .Values.angular.resources.requests.memory }}
+
