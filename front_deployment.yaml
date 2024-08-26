@@ -16,7 +16,7 @@ spec:
     spec:  
       containers:  
       - name: nginx  
-        image: registry.abriment.com/yaghooli/angular_image_tmp2 #angular_image_tmp2 #angular_image_tmp2 # angular_image_tmp:latest  # Update with your image 
+        image: yaghooli/frontangular:latest #registry.abriment.com/yaghooli/angular_image_tmp2 #angular_image_tmp2 #angular_image_tmp2 # angular_image_tmp:latest  # Update with your image 
         imagePullPolicy: Always 
           #imagePullSecrets:  
           # - name: my-registry-secret    

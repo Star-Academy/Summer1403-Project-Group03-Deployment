@@ -22,21 +22,23 @@ spec:
             # imagePullSecrets:  
             #- name: my-registry-secret  
             #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]
+          
           env:
-          - name: ConnectionStrings__DefaultConnection
+          - name: CONNECTION_STRING #ConnectionStrings__DefaultConnection
             valueFrom:
               configMapKeyRef:
                 name: db-secrets-net
                 key: POSTGRES_CONNECTION_STRING
+
           resources:
             limits:
-              cpu: 1000m
-              ephemeral-storage: 500Mi
-              memory: 2000Mi
+              cpu: 1500m
+              ephemeral-storage: 1000Mi
+              memory: 3000Mi
             requests:
-              cpu: 500m
-              ephemeral-storage: 500Mi
-              memory: 1000Mi
+              cpu: 1500m
+              ephemeral-storage: 1000Mi
+              memory: 3000Mi
 
                   #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]           # Overriding the command  
                     #args:  
@@ -46,20 +48,15 @@ spec:
 
       containers:
         - name: web
-          image: yaghooli/dotnetdev:v0.11.8 #registry.abriment.com/yaghooli/dotnetabri2:latest #yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
-          imagePullPolicy: IfNotPresent
-            #imagePullSecrets:  
-            #- name: my-registry-secret  
-            #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
+          image: yaghooli/dotnetdev:latest #registry.abriment.com/yaghooli/dotnetabri2:latest #yaghooli/dotnetdev:latest #webimage4 yaghooli/dotnetdev:latest
+          imagePullPolicy: Always #IfNotPresent
 
           env:
-          - name: ConnectionStrings__DefaultConnection
+          - name: CONNECTION_STRING #ConnectionStrings__DefaultConnection
             valueFrom:
               configMapKeyRef:
                 name: db-secrets-net
                 key: POSTGRES_CONNECTION_STRING
-                  #imagePullSecrets:
-        #- name: my-registry-secret
           ports:
           - containerPort: 80
           resources:

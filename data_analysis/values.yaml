@@ -24,7 +24,8 @@ postgres:
 
 angular:  
   image:  
-    repository: registry.abriment.com/yaghooli/angular_image_tmp2  
+    repository: yaghooli/frontangular:latest 
+    #registry.abriment.com/yaghooli/angular_image_tmp2  
   service:  
     type: ClusterIP
 
@@ -45,7 +46,7 @@ init:
 
 web:  
   image:  
-    repository: yaghooli/dotnetdev:v0.11.8 #registry.abriment.com/yaghooli/dotnetabri:latest  
+    repository: yaghooli/dotnetdev:latest #registry.abriment.com/yaghooli/dotnetabri:latest  
   service:  
     type: ClusterIP  
 

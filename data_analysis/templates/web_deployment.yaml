@@ -28,7 +28,7 @@ spec:
               memory: {{ .Values.web.resources.requests.memory }}  
               ephemeral-storage: {{ .Values.web.resources.requests.ephemeralstorage }}
           env:  
-            - name: ConnectionStrings__DefaultConnection  
+            - name: CONNECTION_STRING #ConnectionStrings__DefaultConnection  
               valueFrom:  
                 configMapKeyRef:  
                   name: db-secrets-net  
@@ -36,6 +36,7 @@ spec:
       containers:  
         - name: web  
           image: {{ .Values.web.image.repository }}  
+          imagePullPolicy: Always
           resources:          
             limits:
               cpu: {{ .Values.web.resources.limits.cpu }}     
@@ -49,7 +50,7 @@ spec:
           ports:  
             - containerPort: 80  
           env:  
-            - name: ConnectionStrings__DefaultConnection  
+            - name: CONNECTION_STRING #ConnectionStrings__DefaultConnection  
               valueFrom:  
                 configMapKeyRef:  
                   name: db-secrets-net  
