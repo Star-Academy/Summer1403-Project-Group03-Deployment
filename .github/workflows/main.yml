@@ -62,8 +62,8 @@ jobs:
           name: foobar
           value-files: >-
           [
-            "values.yaml",
+            "./data_analysis/values.yaml",
           ]
       env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+        KUBECONFIG_FILE: ./config.yaml #'${{ secrets.KUBECONFIG }}'
     
