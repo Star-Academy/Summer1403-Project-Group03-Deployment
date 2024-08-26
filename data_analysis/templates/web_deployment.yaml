@@ -36,7 +36,6 @@ spec:
       containers:  
         - name: web  
           image: {{ .Values.web.image.repository }}  
-          imagePullPolicy: Always
           resources:          
             limits:
               cpu: {{ .Values.web.resources.limits.cpu }}     
@@ -51,6 +50,7 @@ spec:
             - containerPort: 80  
           env:  
             - name: CONNECTION_STRING #ConnectionStrings__DefaultConnection  
+
               valueFrom:  
                 configMapKeyRef:  
                   name: db-secrets-net  

@@ -26,6 +26,7 @@ angular:
   image:  
     repository: yaghooli/frontangular:latest 
     #registry.abriment.com/yaghooli/angular_image_tmp2  
+
   service:  
     type: ClusterIP
 
@@ -47,6 +48,7 @@ init:
 web:  
   image:  
     repository: yaghooli/dotnetdev:latest #registry.abriment.com/yaghooli/dotnetabri:latest  
+
   service:  
     type: ClusterIP  
 
