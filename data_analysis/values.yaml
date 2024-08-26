@@ -45,7 +45,8 @@ init:
 
 web:  
   image:  
-    repository: yaghooli/dotnetdev:v0.11.4 #registry.abriment.com/yaghooli/dotnetabri:latest  
+    repository: yaghooli/dotnetdev:v0.11.8 #registry.abriment.com/yaghooli/dotnetabri:latest  
+
   service:  
     type: ClusterIP  
 
