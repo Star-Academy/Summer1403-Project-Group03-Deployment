@@ -56,7 +56,7 @@ jobs:
       with:
         release: 'analysis-data2'
         namespace: 'analysis-data2'
-        chart: 'data_analysis'
+        chart: './data_analysis'
         token: '${{ github.token }}'
         values: |
           name: foobar
@@ -65,5 +65,5 @@ jobs:
             "./data_analysis/values.yaml",
           ]
       env:
-        KUBECONFIG_FILE: ./config.yaml #'${{ secrets.KUBECONFIG }}'
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
     
