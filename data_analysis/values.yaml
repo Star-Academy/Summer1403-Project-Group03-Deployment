@@ -47,7 +47,7 @@ init:
 
 web:  
   image:  
-    repository: yaghooli/dotnetdev:v0.13.1
+    repository: yaghooli/dotnetdev:v0.13.2
 
   service:  
     type: ClusterIP  
