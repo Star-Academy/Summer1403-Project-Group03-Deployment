@@ -46,24 +46,24 @@ jobs:
         if: steps.list-changed.outputs.changed == 'true'
         run: ct install --target-branch ${{ github.event.repository.default_branch }}
 
-  Deploy:
-    runs-on: 'ubuntu-latest'
-    steps:
-    - uses: actions/checkout@v3
+  # Deploy:
+  #   runs-on: 'ubuntu-latest'
+  #   steps:
+  #   - uses: actions/checkout@v3
 
-    - name: 'Deploy'
-      uses: 'deliverybot/helm@v1'
-      with:
-        release: 'analysis-data2'
-        namespace: 'analysis-data2'
-        chart: './data_analysis'
-        token: '${{ github.token }}'
-        values: |
-          name: foobar
-          value-files: >-
-          [
-            "./data_analysis/values.yaml",
-          ]
-      env:
-        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+  #   - name: 'Deploy'
+  #     uses: 'deliverybot/helm@v1'
+  #     with:
+  #       release: 'analysis-data2'
+  #       namespace: 'analysis-data2'
+  #       chart: './data_analysis'
+  #       token: '${{ github.token }}'
+  #       values: |
+  #         name: foobar
+  #         value-files: >-
+  #         [
+  #           "./data_analysis/values.yaml",
+  #         ]
+  #     env:
+  #       KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
     
