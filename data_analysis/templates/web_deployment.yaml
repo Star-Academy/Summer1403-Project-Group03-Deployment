@@ -16,7 +16,8 @@ spec:
         - name: init-container  
           image: {{ .Values.web.image.repository }}
           imagePullPolicy: Always
-          command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
+          command: ["./migrateout"]
+            #["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
           resources:  
             limits:  
               cpu: {{ .Values.web.resources.limits.cpu }}  
