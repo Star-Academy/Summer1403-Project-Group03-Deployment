@@ -1,8 +1,8 @@
 postgres:  
-  db: "mohaymen"  
-  user: "postgres"  
-  password: "1234"  
-  host: "postgres"  
+  db: "stardata"  
+  user: "yaghooli"  
+  password: "Aliyaghini110110@"  
+  host: "stardata.83ddaaf9a69e4d4d86caf49e649f8464-dbaas-postgresql-7ef1f268b93fa.svc.cluster.local:5432"  
   port: "5432"  
   image:  
     repository: postgres  
