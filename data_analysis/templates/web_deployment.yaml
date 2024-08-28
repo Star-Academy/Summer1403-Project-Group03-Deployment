@@ -14,9 +14,9 @@ spec:
     spec:  
       initContainers:  
         - name: init-container  
-          image: {{ .Values.init.image.repository }}
+          image: {{ .Values.web.image.repository }}
           imagePullPolicy: Always
-            #command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
+          command: ["dotnet", "ef", "--project", "AnalysisData/AnalysisData/AnalysisData.csproj", "database", "update"]  
           resources:  
             limits:  
               cpu: {{ .Values.web.resources.limits.cpu }}  
