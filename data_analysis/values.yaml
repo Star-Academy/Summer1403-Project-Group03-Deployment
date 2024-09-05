@@ -43,11 +43,11 @@ angular:
 
 init:
   image: 
-    repository: yaghooli/migrateimage:v0.15.5
+    repository: yaghooli/migrateimage:v0.15.6
 
 web:  
   image:  
-    repository: yaghooli/dotnetdev:v0.15.5
+    repository: yaghooli/dotnetdev:v0.15.6
 
   service:  
     type: ClusterIP  
