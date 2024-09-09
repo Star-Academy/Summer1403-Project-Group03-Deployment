@@ -24,7 +24,7 @@ postgres:
 
 angular:  
   image:  
-    repository: yaghooli/frontangular:v0.24.2
+    repository: yaghooli/frontangular:v0.24.3
     #registry.abriment.com/yaghooli/angular_image_tmp2  
 
   service:  
