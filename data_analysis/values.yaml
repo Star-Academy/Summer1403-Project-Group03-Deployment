@@ -1,8 +1,8 @@
 postgres:  
-  db: "stardataaa"  
+  db: "stardata"  
   user: "yaghooli"  
   password: "Aliyaghini110110@"  
-  host: "stardataaa.83ddaaf9a69e4d4d86caf49e649f8464-dbaas-postgresql-a361fcd1ad5cf.svc.cluster.local:5432"  
+  host: "stardata.83ddaaf9a69e4d4d86caf49e649f8464-dbaas-postgresql-7ef1f268b93fa.svc.cluster.local:5432"  
   port: "5432"  
   image:  
     repository: postgres  
@@ -25,7 +25,6 @@ postgres:
 angular:  
   image:  
     repository: yaghooli/frontangular:v0.24.3
-    #registry.abriment.com/yaghooli/angular_image_tmp2  
 
   service:  
     type: ClusterIP
@@ -65,10 +64,3 @@ web:
 
 storage:  
   size: 3Gi 
-
-      #imagePullSecrets:  
-  #  - name: my-registry-secret  
-
-    #ingress:  
-  # enabled: true  
-    #  host: myapp.local
