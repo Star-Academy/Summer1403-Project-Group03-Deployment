@@ -24,7 +24,7 @@ postgres:
 
 angular:  
   image:  
-    repository: yaghooli/frontangular:v0.27.0
+    repository: yaghooli/frontangular:v0.27.1
 
   service:  
     type: ClusterIP
